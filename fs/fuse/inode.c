@@ -760,14 +760,14 @@ static int fuse_parse_param(struct fs_context *fsc, struct fs_parameter *param)
 						BPF_PROG_TYPE_FUSE, false);
 		if (IS_ERR(ctx->root_bpf)) {
 			ctx->root_bpf = NULL;
-			return invalfc(fc, "Unable to open bpf program");
+			return invalfc(fsc, "Unable to open bpf program");
 		}
 		break;
 
 	case OPT_ROOT_DIR:
 		ctx->root_dir = fget(result.uint_32);
 		if (!ctx->root_dir)
-			return invalfc(fc, "Unable to open root directory");
+			return invalfc(fsc, "Unable to open root directory");
 		break;
 
 	case OPT_NO_DAEMON:
