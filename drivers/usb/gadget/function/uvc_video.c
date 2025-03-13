@@ -626,6 +626,8 @@ static void uvcg_video_pump(struct work_struct *work)
 
 		/* The request is owned by  the endpoint / ready list. */
 		req = NULL;
+		if (buf->state != UVC_BUF_STATE_DONE)
+			video->req_int_count++;
 	}
 
 	if (!req)
